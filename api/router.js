@@ -6,6 +6,7 @@ const router = require("express").Router();
 
 //MASTER
 router.post("/addmaster", master.addmaster);
+router.delete("/deletemaster", master.deletemaster);
 
 // CATEGORY
 router.post("/addcategory", category.addCategory);
@@ -16,5 +17,6 @@ router.delete("/deletecategory", category.deleteCategory);
 //PRODUCT
  router.post("/addproduct", product.addProduct);
  router.get("/getproduct/:m_id", product.getProduct);
+ router.delete("/deleteproduct", product.deleteProduct);
 
 module.exports = router;

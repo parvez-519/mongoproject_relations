@@ -41,7 +41,32 @@ const getProduct = async (req, res) => {
       });
   }
 };
+const deleteProduct = async (req, res) => {
+  try {
+    console.log("---------", req.body.id);
+    console.log("---------", req.body.c_id);
+
+    const resp = await productSchema.deleteMany({
+      where: {
+        c_id: req.body.c_id,
+      },
+    }).exec();
+
+    res.status(201).json({
+      status: appConst.status.success,
+      response: null,
+      message: "Deleted Successfully",
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({
+      status: appConst.status.fail,
+      response: null,
+      message: err.message,
+    });
+  }
+};
 
 
 
-module.exports = { addProduct, getProduct };
+module.exports = { addProduct, getProduct,deleteProduct };

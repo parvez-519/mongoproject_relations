@@ -76,7 +76,11 @@ const deleteCategory = async (req, res) => {
       })
       .exec();
 
-    const resp2 = await productSchema.deleteMany(req.body.id).exec();
+    const resp2 = await productSchema.deleteMany({
+      where: {
+        id: req.body.id,
+      },
+    }).exec();
 
     res.status(201).json({
       status: appConst.status.success,

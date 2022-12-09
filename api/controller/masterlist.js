@@ -22,5 +22,29 @@ const addmaster = async (req, res) => {
         });
     }
   };
+  const deletemaster = async (req, res) => {
+    const addMasterData = new masterSchema({
+      m_id:req.body.m_id,
+    });
+    try {
+      const resp = await addMasterData.deleteOne({
+        where: {
+          id: req.body.id,
+        },
+      });
+      res
+        .status(201)
+        .json({ status: appConst.status.success, response: resp, message: null });
+    } catch (err) {
+      console.log(err);
+      res
+        .status(400)
+        .json({
+          status: appConst.status.fail,
+          response: null,
+          message: err.message,
+        });
+    }
+  };
 
-  module.exports={addmaster}
+  module.exports={addmaster,deletemaster}
